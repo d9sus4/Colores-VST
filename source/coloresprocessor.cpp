@@ -2,15 +2,16 @@
 // Copyright(c) 2023 Dsus.
 //------------------------------------------------------------------------
 
-#include "processor.h"
-#include "cids.h"
+#include "coloresprocessor.h"
+#include "colorescids.h"
 
 #include "base/source/fstreamer.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
+#include "public.sdk/source/vst/vstaudioprocessoralgo.h"
 
 using namespace Steinberg;
 
-namespace dsus {
+namespace Dsus {
 //------------------------------------------------------------------------
 // ColoresProcessor
 //------------------------------------------------------------------------
@@ -67,26 +68,30 @@ tresult PLUGIN_API ColoresProcessor::setActive (TBool state)
 tresult PLUGIN_API ColoresProcessor::process (Vst::ProcessData& data)
 {
 	//--- First : Read inputs parameter changes-----------
-
-    /*if (data.inputParameterChanges)
-    {
-        int32 numParamsChanged = data.inputParameterChanges->getParameterCount ();
-        for (int32 index = 0; index < numParamsChanged; index++)
-        {
-            if (auto* paramQueue = data.inputParameterChanges->getParameterData (index))
-            {
+    
+    if (data.inputParameterChanges) {
+        int32 numParamsChanged = data.inputParameterChanges->getParameterCount();
+        for (int32 index = 0; index < numParamsChanged; index++) {
+            if (auto* paramQueue = data.inputParameterChanges->getParameterData(index)) {
                 Vst::ParamValue value;
                 int32 sampleOffset;
-                int32 numPoints = paramQueue->getPointCount ();
-                switch (paramQueue->getParameterId ())
-                {
-				}
-			}
-		}
-	}*/
+                int32 numPoints = paramQueue->getPointCount();
+                switch (paramQueue->getParameterId ()) {
+                    // handle different param change by tag defined in cid.h
+                    case ColoresParams::kDryWetId:
+                        if (paramQueue->getPoint(numPoints-1, sampleOffset, value) == kResultTrue) { // get the last point in the queue (there can be multiple change points in the same audio processing block)
+                            mDryWet = value;
+                        }
+                        break;
+                }
+            }
+        }
+    }
 	
 	//--- Here you have to implement your processing
-
+    if (data.numSamples > 0) {
+        // TODO: a simple notch filter
+    }
 	return kResultOk;
 }
 
@@ -130,4 +135,4 @@ tresult PLUGIN_API ColoresProcessor::getState (IBStream* state)
 }
 
 //------------------------------------------------------------------------
-} // namespace dsus
+} // namespace Dsus

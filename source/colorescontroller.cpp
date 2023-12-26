@@ -2,13 +2,13 @@
 // Copyright(c) 2023 Dsus.
 //------------------------------------------------------------------------
 
-#include "controller.h"
-#include "cids.h"
+#include "colorescontroller.h"
+#include "colorescids.h"
 #include "vstgui/plugin-bindings/vst3editor.h"
 
 using namespace Steinberg;
 
-namespace dsus {
+namespace Dsus {
 
 //------------------------------------------------------------------------
 // ColoresController Implementation
@@ -25,6 +25,7 @@ tresult PLUGIN_API ColoresController::initialize (FUnknown* context)
 	}
 
 	// Here you could register some parameters
+    parameters.addParameter(STR16("Color"), STR16("%"), 0, .5, Vst::ParameterInfo::kCanAutomate, ColoresParams::kDryWetId, 0);
 
 	return result;
 }
@@ -72,7 +73,7 @@ IPlugView* PLUGIN_API ColoresController::createView (FIDString name)
 	if (FIDStringsEqual (name, Vst::ViewType::kEditor))
 	{
 		// create your editor here and return a IPlugView ptr of it
-		auto* view = new VSTGUI::VST3Editor (this, "view", "editor.uidesc");
+		auto* view = new VSTGUI::VST3Editor (this, "view", "coloreseditor.uidesc");
 		return view;
 	}
 	return nullptr;
@@ -103,4 +104,4 @@ tresult PLUGIN_API ColoresController::getParamValueByString (Vst::ParamID tag, V
 }
 
 //------------------------------------------------------------------------
-} // namespace dsus
+} // namespace Dsus

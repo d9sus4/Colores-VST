@@ -7,12 +7,18 @@
 #include "pluginterfaces/base/funknown.h"
 #include "pluginterfaces/vst/vsttypes.h"
 
-namespace dsus {
+namespace Dsus {
+
+// parameter tags/ids, should be unique
+enum ColoresParams: Steinberg::Vst::ParamID {
+    kDryWetId = 100, // according to ChatGPT, "k" stands for constant
+};
+
 //------------------------------------------------------------------------
-static const Steinberg::FUID kColoresProcessorUID (0xD3A344B4, 0x009559AF, 0xBB017F98, 0x38072431);
-static const Steinberg::FUID kColoresControllerUID (0x57072BAC, 0x6788520E, 0x8A20F5B9, 0xAE8E1BA5);
+static const Steinberg::FUID kColoresProcessorUID (0xA658BDC9, 0xCC2C5715, 0xBABA6C02, 0xDAEF9FC1);
+static const Steinberg::FUID kColoresControllerUID (0xF7C8EE15, 0xD8F953D6, 0x9E8C7D95, 0x1873C05B);
 
 #define ColoresVST3Category "Fx"
 
 //------------------------------------------------------------------------
-} // namespace dsus
+} // namespace Dsus

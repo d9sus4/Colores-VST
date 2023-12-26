@@ -2,9 +2,9 @@
 // Copyright(c) 2023 Dsus.
 //------------------------------------------------------------------------
 
-#include "processor.h"
-#include "controller.h"
-#include "cids.h"
+#include "coloresprocessor.h"
+#include "colorescontroller.h"
+#include "colorescids.h"
 #include "version.h"
 
 #include "public.sdk/source/main/pluginfactory.h"
@@ -12,7 +12,7 @@
 #define stringPluginName "Colores"
 
 using namespace Steinberg::Vst;
-using namespace dsus;
+using namespace Dsus;
 
 //------------------------------------------------------------------------
 //  VST Plug-in Entry

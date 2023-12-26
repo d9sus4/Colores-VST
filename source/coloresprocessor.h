@@ -6,7 +6,7 @@
 
 #include "public.sdk/source/vst/vstaudioeffect.h"
 
-namespace dsus {
+namespace Dsus {
 
 //------------------------------------------------------------------------
 //  ColoresProcessor
@@ -50,8 +50,10 @@ public:
 
 //------------------------------------------------------------------------
 protected:
+    // init everything needed for processing, e.g. parameters from the controller, buffer, etc
+    Steinberg::Vst::ParamValue mDryWet = 1.; // according to ChatGPT, "m" stands for member
 
 };
 
 //------------------------------------------------------------------------
-} // namespace dsus
+} // namespace Dsus

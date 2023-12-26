@@ -6,7 +6,7 @@
 
 #include "public.sdk/source/vst/vsteditcontroller.h"
 
-namespace dsus {
+namespace Dsus {
 
 //------------------------------------------------------------------------
 //  ColoresController
@@ -54,4 +54,4 @@ protected:
 };
 
 //------------------------------------------------------------------------
-} // namespace dsus
+} // namespace Dsus

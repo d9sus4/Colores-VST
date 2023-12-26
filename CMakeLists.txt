@@ -21,19 +21,19 @@ smtg_enable_vst3_sdk()
 
 smtg_add_vst3plugin(Colores
     source/version.h
-    source/cids.h
-    source/processor.h
-    source/processor.cpp
-    source/controller.h
-    source/controller.cpp
-    source/entry.cpp
+    source/colorescids.h
+    source/coloresprocessor.h
+    source/coloresprocessor.cpp
+    source/colorescontroller.h
+    source/colorescontroller.cpp
+    source/coloresentry.cpp
 )
 
 #- VSTGUI Wanted ----
 if(SMTG_ENABLE_VSTGUI_SUPPORT)
     target_sources(Colores
         PRIVATE
-            resource/editor.uidesc
+            resource/coloreseditor.uidesc
     )
     target_link_libraries(Colores
         PRIVATE
@@ -41,15 +41,15 @@ if(SMTG_ENABLE_VSTGUI_SUPPORT)
     )
     smtg_target_add_plugin_resources(Colores
         RESOURCES
-            "resource/editor.uidesc"
+            "resource/coloreseditor.uidesc"
     )
 endif(SMTG_ENABLE_VSTGUI_SUPPORT)
 # -------------------
 
 smtg_target_add_plugin_snapshots (Colores
     RESOURCES
-        resource/D3A344B4009559AFBB017F9838072431_snapshot.png
-        resource/D3A344B4009559AFBB017F9838072431_snapshot_2.0x.png
+        resource/A658BDC9CC2C5715BABA6C02DAEF9FC1_snapshot.png
+        resource/A658BDC9CC2C5715BABA6C02DAEF9FC1_snapshot_2.0x.png
 )
 
 target_link_libraries(Colores
